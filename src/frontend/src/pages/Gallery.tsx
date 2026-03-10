@@ -17,13 +17,13 @@ const GALLERY_ITEMS = [
     wide: false,
   },
   {
-    src: "/assets/generated/product-custom-photo.dim_600x600.jpg",
-    alt: "Custom Photo Frame",
+    src: "/assets/generated/gallery-abstract.dim_600x600.jpg",
+    alt: "Abstract Acrylic Art",
     wide: false,
   },
   {
-    src: "/assets/generated/product-3d-acrylic.dim_600x600.jpg",
-    alt: "3D Acrylic Frame",
+    src: "/assets/generated/gallery-islamic-2.dim_600x600.jpg",
+    alt: "Islamic Geometric Art",
     wide: false,
   },
   {
@@ -32,19 +32,35 @@ const GALLERY_ITEMS = [
     wide: true,
   },
   {
+    src: "/assets/generated/product-custom-photo.dim_600x600.jpg",
+    alt: "Custom Photo Frame",
+    wide: false,
+  },
+  {
+    src: "/assets/generated/gallery-family.dim_600x600.jpg",
+    alt: "Family Portrait Frame",
+    wide: false,
+  },
+  {
+    src: "/assets/generated/product-3d-acrylic.dim_600x600.jpg",
+    alt: "3D Acrylic Frame",
+    wide: false,
+  },
+  {
+    src: "/assets/generated/gallery-3d-landscape.dim_600x600.jpg",
+    alt: "3D Landscape Frame",
+    wide: false,
+  },
+  {
+    src: "/assets/generated/gallery-wall-2.dim_1200x700.jpg",
+    alt: "Premium gallery wall",
+    wide: true,
+  },
+  {
     src: "/assets/generated/product-home-decor.dim_600x600.jpg",
     alt: "Home Decor Frame",
     wide: false,
   },
-];
-
-const OCIDS = [
-  "gallery.item.1",
-  "gallery.item.2",
-  "gallery.item.3",
-  "gallery.item.4",
-  "gallery.item.5",
-  "gallery.item.6",
 ];
 
 export function GalleryPage() {
@@ -76,7 +92,7 @@ export function GalleryPage() {
           {GALLERY_ITEMS.map((item, i) => (
             <div
               key={item.src}
-              data-ocid={OCIDS[i] ?? `gallery.item.${i + 1}`}
+              data-ocid={`gallery.item.${i + 1}`}
               className={`fade-in stagger-${Math.min(i + 1, 5)} relative overflow-hidden group cursor-pointer ${
                 item.wide ? "md:col-span-2" : ""
               }`}

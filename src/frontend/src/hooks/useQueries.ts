@@ -1,5 +1,6 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import type { Inquiry, Product } from "../backend.d";
+import type { Product } from "../backend";
+import type { Inquiry } from "../backend.d";
 import { useActor } from "./useActor";
 
 export function useListProducts() {

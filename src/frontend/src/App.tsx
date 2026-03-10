@@ -11,6 +11,7 @@ import { Footer } from "./components/Footer";
 import { Navbar } from "./components/Navbar";
 import { WhatsAppButton } from "./components/WhatsAppButton";
 import { AboutPage } from "./pages/About";
+import { AdminInquiriesPage } from "./pages/AdminInquiries";
 import { ContactPage } from "./pages/Contact";
 import { CustomOrdersPage } from "./pages/CustomOrders";
 import { GalleryPage } from "./pages/Gallery";
@@ -61,6 +62,11 @@ const contactRoute = createRoute({
   path: "/contact",
   component: ContactPage,
 });
+const adminInquiriesRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "/admin/inquiries",
+  component: AdminInquiriesPage,
+});
 
 const routeTree = rootRoute.addChildren([
   indexRoute,
@@ -69,6 +75,7 @@ const routeTree = rootRoute.addChildren([
   customOrdersRoute,
   galleryRoute,
   contactRoute,
+  adminInquiriesRoute,
 ]);
 
 const router = createRouter({ routeTree });

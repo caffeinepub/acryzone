@@ -19,6 +19,7 @@ export type Time = bigint;
 export interface Product {
     name: string;
     description: string;
+    sizes: string[];
 }
 export interface backendInterface {
     listInquiries(): Promise<Array<Inquiry>>;

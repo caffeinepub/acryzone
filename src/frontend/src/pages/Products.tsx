@@ -15,39 +15,83 @@ const PRODUCT_IMAGES: Record<string, string> = {
     "/assets/generated/product-home-decor.dim_600x600.jpg",
 };
 
-const FALLBACK_PRODUCTS = [
+interface SizePrice {
+  size: string;
+  price?: number;
+  isCustom?: boolean;
+}
+
+interface DisplayProduct {
+  name: string;
+  description: string;
+  sizes?: SizePrice[];
+}
+
+const FALLBACK_PRODUCTS: DisplayProduct[] = [
   {
     name: "Premium Acrylic UV Print Frames",
     description:
       "Vivid UV printing on optical-grade acrylic for stunning clarity and color depth. Perfect for modern interiors.",
+    sizes: [
+      { size: "24x18", price: 1599 },
+      { size: "24x36", price: 2500 },
+      { size: "46x35", price: 3500 },
+      { size: "Custom", isCustom: true },
+    ],
   },
   {
     name: "Islamic Wall Art Frames",
     description:
       "Elegant Arabic calligraphy and geometric Islamic art on premium acrylic with gold accent details.",
+    sizes: [
+      { size: "24x18", price: 1599 },
+      { size: "24x36", price: 2500 },
+      { size: "46x35", price: 3500 },
+      { size: "Custom", isCustom: true },
+    ],
   },
   {
     name: "Custom Photo Frames",
     description:
       "Turn your cherished memories into stunning wall art with our bespoke photo frame service.",
+    sizes: [
+      { size: "24x18", price: 1599 },
+      { size: "24x36", price: 2500 },
+      { size: "46x35", price: 3500 },
+      { size: "Custom", isCustom: true },
+    ],
   },
   {
     name: "3D Acrylic Frames",
     description:
       "Layered acrylic panels create breathtaking three-dimensional depth for truly show-stopping wall pieces.",
+    sizes: [
+      { size: "24x18", price: 1599 },
+      { size: "24x36", price: 2500 },
+      { size: "46x35", price: 3500 },
+      { size: "Custom", isCustom: true },
+    ],
   },
   {
     name: "Home Decor Acrylic Frames",
     description:
       "Curated home decor collections that complement any interior design style, from minimalist to maximalist.",
+    sizes: [
+      { size: "24x18", price: 1599 },
+      { size: "24x36", price: 2500 },
+      { size: "46x35", price: 3500 },
+      { size: "Custom", isCustom: true },
+    ],
   },
 ];
 
 export function ProductsPage() {
   const { data: products, isLoading } = useListProducts();
   const ref = useFadeIn();
-  const displayProducts =
-    products && products.length > 0 ? products : FALLBACK_PRODUCTS;
+  const displayProducts: DisplayProduct[] =
+    products && products.length > 0
+      ? (products as DisplayProduct[])
+      : FALLBACK_PRODUCTS;
   const ocids = [
     "product.item.1",
     "product.item.2",
@@ -100,9 +144,40 @@ export function ProductsPage() {
                 <div className="p-8">
                   <div className="w-6 h-0.5 gold-bg mb-4" />
                   <h3 className="font-display text-2xl mb-3">{product.name}</h3>
-                  <p className="text-muted-foreground leading-relaxed mb-6">
+                  <p className="text-muted-foreground leading-relaxed mb-5">
                     {product.description}
                   </p>
+
+                  {/* Size & Price chips */}
+                  {product.sizes && product.sizes.length > 0 && (
+                    <div className="flex flex-col gap-2 mb-6">
+                      {product.sizes.map((sp) =>
+                        sp.isCustom ? (
+                          <span
+                            key={sp.size}
+                            className="self-start px-2.5 py-1 text-[10px] tracking-widest uppercase font-body border gold-border gold-text font-semibold"
+                          >
+                            Custom Size Available
+                          </span>
+                        ) : (
+                          <div
+                            key={sp.size}
+                            className="flex items-center justify-between border border-border px-3 py-2"
+                          >
+                            <span className="text-xs tracking-widest uppercase font-body text-muted-foreground">
+                              {sp.size} inches
+                            </span>
+                            {sp.price !== undefined && (
+                              <span className="text-sm font-display font-bold gold-text">
+                                PKR {sp.price.toLocaleString()}
+                              </span>
+                            )}
+                          </div>
+                        ),
+                      )}
+                    </div>
+                  )}
+
                   <Link
                     to="/custom-orders"
                     className="inline-flex items-center gap-2 text-xs tracking-widest uppercase font-body gold-text border-b border-current pb-0.5 hover:opacity-70 transition-opacity"

@@ -6,8 +6,8 @@ const CONTACT_INFO = [
   {
     icon: MessageCircle,
     title: "WhatsApp",
-    value: "+1 234 567 890",
-    href: "https://wa.me/1234567890",
+    value: "+92 961 845 4300",
+    href: "https://wa.me/9618454300",
     desc: "Chat with us directly",
   },
   {
